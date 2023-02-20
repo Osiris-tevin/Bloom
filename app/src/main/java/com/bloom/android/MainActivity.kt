@@ -3,7 +3,12 @@ package com.bloom.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
 import androidx.core.view.WindowCompat
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.bloom.android.ui.LoginPage
 import com.bloom.android.ui.WelcomePage
 
 class MainActivity : ComponentActivity() {
@@ -16,7 +21,20 @@ class MainActivity : ComponentActivity() {
         controller.isAppearanceLightStatusBars = true
 
         setContent {
-            WelcomePage()
+            MainContent()
         }
+    }
+}
+
+@Composable
+fun MainContent() {
+    // 创建NavController
+    val navController = rememberNavController()
+    // 用NavHost将NavController和导航图相关联, startDestination指定起始的可组合项
+    NavHost(navController = navController, startDestination = "welcome_page") {
+        // 给WelcomePage可组合项指定路径
+        composable("welcome_page") { WelcomePage(navController) }
+        // 给LoginPage可组合项指定路径
+        composable("login_page") { LoginPage(navController)}
     }
 }

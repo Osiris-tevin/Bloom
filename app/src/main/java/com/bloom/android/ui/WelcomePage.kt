@@ -16,14 +16,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.bloom.android.R
 import com.bloom.android.ui.theme.*
 
-@Preview
 @Composable
-fun WelcomePage() {
+fun WelcomePage(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -34,19 +33,19 @@ fun WelcomePage() {
             contentDescription = "welcome_bg",
             modifier = Modifier.fillMaxSize()
         )
-        WelcomeContent()
+        WelcomeContent(navController)
     }
 }
 
 @Composable
-fun WelcomeContent() {
+fun WelcomeContent(navController: NavController) {
     Column(modifier = Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(72.dp))
         LeafImage()
         Spacer(modifier = Modifier.height(48.dp))
         WelcomeTitle()
         Spacer(modifier = Modifier.height(40.dp))
-        WelcomeButtons()
+        WelcomeButtons(navController)
     }
 }
 
@@ -91,7 +90,7 @@ fun WelcomeTitle() {
 }
 
 @Composable
-fun WelcomeButtons() {
+fun WelcomeButtons(navController: NavController) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxWidth()
@@ -113,7 +112,10 @@ fun WelcomeButtons() {
         }
         Spacer(modifier = Modifier.height(24.dp))
         TextButton(
-            onClick = { }
+            onClick = {
+                // 导航到LoginPage可组合项
+                navController.navigate("login_page")
+            }
         ) {
             Text(
                 text = "Log in",
