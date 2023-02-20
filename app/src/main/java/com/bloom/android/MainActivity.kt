@@ -4,42 +4,21 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.bloom.android.ui.theme.BloomTheme
+import androidx.core.view.WindowCompat
+import com.bloom.android.ui.WelcomePage
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // 使用沉浸式状态栏
-        window.setDecorFitsSystemWindows(false)
+        //DecorView不再为SystemUI(状态栏和导航栏等)预留Padding
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val controller = WindowCompat.getInsetsController(window, window.decorView)
+        //状态栏设为亮色 (状态栏的文字、图标颜色为暗色)
+        controller?.isAppearanceLightStatusBars = true
+
         setContent {
-            BloomTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
-                }
-            }
+            WelcomePage()
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    BloomTheme {
-        Greeting("Android")
     }
 }
