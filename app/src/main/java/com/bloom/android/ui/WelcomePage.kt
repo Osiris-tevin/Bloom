@@ -112,7 +112,9 @@ fun WelcomeButtons() {
             )
         }
         Spacer(modifier = Modifier.height(24.dp))
-        TextButton(onClick = { }) {
+        TextButton(
+            onClick = { }
+        ) {
             Text(
                 text = "Log in",
                 style = button,  // Type.kt配置的字体
