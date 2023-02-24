@@ -8,6 +8,7 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.bloom.android.ui.HomePage
 import com.bloom.android.ui.LoginPage
 import com.bloom.android.ui.WelcomePage
 
@@ -35,6 +36,8 @@ fun MainContent() {
         // 给WelcomePage可组合项指定路径
         composable("welcome_page") { WelcomePage(navController) }
         // 给LoginPage可组合项指定路径
-        composable("login_page") { LoginPage(navController)}
+        composable("login_page") { LoginPage(navController) }
+        // 给HomePage可组合项指定路径
+        composable("home_page") { HomePage() }
     }
 }

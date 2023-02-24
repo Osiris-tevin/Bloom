@@ -26,7 +26,7 @@ fun LoginPage(navController: NavController) {
         LoginTitle()
         LoginInputBox()
         HintWithUnderLine()
-        LoginButton()
+        LoginButton(navController)
     }
 }
 
@@ -134,9 +134,12 @@ fun BottomText() {
 }
 
 @Composable
-fun LoginButton() {
+fun LoginButton(navController: NavController) {
     Button(
-        onClick = { },
+        onClick = {
+            // 导航到LoginPage可组合项
+            navController.navigate("home_page")
+        },
         modifier = Modifier
             .fillMaxWidth()
             .height(48.dp)
