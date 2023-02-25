@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.bloom.android.ui.HomePage
 import com.bloom.android.ui.LoginPage
 import com.bloom.android.ui.WelcomePage
+import com.bloom.android.ui.theme.BloomTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +23,9 @@ class MainActivity : ComponentActivity() {
         controller.isAppearanceLightStatusBars = true
 
         setContent {
-            MainContent()
+            BloomTheme {
+                MainContent()
+            }
         }
     }
 }

@@ -2,10 +2,7 @@ package com.bloom.android.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,7 +17,7 @@ fun LoginPage(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(white)
+            .background(MaterialTheme.colorScheme.background)
             .padding(horizontal = 16.dp)
     ) {
         LoginTitle()
@@ -38,7 +35,7 @@ fun LoginTitle() {
             .fillMaxWidth()
             .paddingFromBaseline(top = 184.dp, bottom = 16.dp),
         style = h1,
-        color = gray,
+        color = MaterialTheme.colorScheme.onBackground,
         textAlign = TextAlign.Center
     )
 }
@@ -63,7 +60,7 @@ fun LoginTextField(placeholder: String) {
             Text(
                 text = placeholder,
                 style = body1,
-                color = gray
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
     )
@@ -91,20 +88,20 @@ fun TopText() {
             Text(
                 text = word,
                 style = body2,
-                color = gray
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
         Text(
             text = "Terms of Use",
             style = body2,
-            color = gray,
+            color = MaterialTheme.colorScheme.onBackground,
             textDecoration = TextDecoration.Underline // 设置下画线
         )
         for (word in keywordPost) {
             Text(
                 text = word,
                 style = body2,
-                color = gray
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
     }
@@ -121,13 +118,13 @@ fun BottomText() {
             Text(
                 text = word,
                 style = body2,
-                color = gray
+                color = MaterialTheme.colorScheme.onBackground
             )
         }
         Text(
             text = "Privacy Policy",
             style = body2,
-            color = gray,
+            color = MaterialTheme.colorScheme.onBackground,
             textDecoration = TextDecoration.Underline
         )
     }
@@ -144,12 +141,12 @@ fun LoginButton(navController: NavController) {
             .fillMaxWidth()
             .height(48.dp)
             .clip(medium),
-        colors = ButtonDefaults.buttonColors(pink900)
+        colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.secondary)
     ) {
         Text(
             text = "Log in",
             style = button,
-            color = white
+            color = MaterialTheme.colorScheme.onSecondary
         )
     }
 }

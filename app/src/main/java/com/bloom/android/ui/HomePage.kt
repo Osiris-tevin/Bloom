@@ -2,10 +2,7 @@
 
 package com.bloom.android.ui
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -41,7 +38,7 @@ fun HomePage() {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(white)
+                .background(MaterialTheme.colorScheme.background)
                 .padding(horizontal = 16.dp) // 设置边距
         ) {
             SearchBar()
@@ -62,7 +59,7 @@ fun SearchBar() {
                 .fillMaxWidth()
                 .height(56.dp)
                 .clip(RoundedCornerShape(4.dp))
-                .border(BorderStroke(1.dp, Color.Black)), // 添加圆角边框
+                .border(BorderStroke(1.dp, if (isSystemInDarkTheme()) white850 else Color.Black)), // 添加圆角边框
             leadingIcon = {
                 Icon(
                     painter = rememberVectorPainter(image = Icons.Filled.Search),
@@ -74,11 +71,11 @@ fun SearchBar() {
                 Text(
                     text = "Search",
                     style = body1,
-                    color = gray
+                    color = MaterialTheme.colorScheme.onBackground
                 )
             },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                backgroundColor = white,
+                backgroundColor = MaterialTheme.colorScheme.background,
                 unfocusedBorderColor = white, // 未选中时的下边框颜色
                 focusedBorderColor = white    // 选中时下边框颜色
             )
@@ -93,7 +90,7 @@ fun BloomRowBanner() {
             Text(
                 text = "Browse themes",
                 style = h1,
-                color = gray,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier
                     .fillMaxWidth()
                     .paddingFromBaseline(top = 32.dp)
@@ -120,7 +117,6 @@ fun PlantCard(plant: ImageItem) {
         modifier = Modifier
             .size(136.dp)
             .clip(RoundedCornerShape(4.dp)),
-        containerColor = white,
         elevation = CardDefaults.cardElevation(1.dp)
     ) {
         Column {
@@ -135,12 +131,13 @@ fun PlantCard(plant: ImageItem) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .background(if (isSystemInDarkTheme()) gray150 else white100)
                     .padding(start = 16.dp)
             ) {
                 Text(
                     text = plant.name,
                     style = h2,
-                    color = gray,
+                    color = MaterialTheme.colorScheme.onBackground,
                     modifier = Modifier
                         .fillMaxWidth()
                         .paddingFromBaseline(top = 24.dp, bottom = 16.dp)
@@ -160,7 +157,7 @@ fun BloomInfoList() {
             Text(
                 text = "Design your home garden",
                 style = h1,
-                color = gray,
+                color = MaterialTheme.colorScheme.onBackground,
                 modifier = Modifier.paddingFromBaseline(top = 40.dp)
             )
             Icon(
@@ -209,13 +206,13 @@ fun DesignCard(plant: ImageItem) {
                     Text(
                         text = plant.name,
                         style = h2,
-                        color = gray,
+                        color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier.paddingFromBaseline(top = 24.dp)
                     )
                     Text(
                         text = "This is a description",
                         style = body1,
-                        color = gray,
+                        color = MaterialTheme.colorScheme.onBackground,
                         modifier = Modifier
                     )
                 }
@@ -231,7 +228,7 @@ fun DesignCard(plant: ImageItem) {
                 )
             }
             // 每个子元素底部都有下画线
-            Divider(color = gray, modifier = Modifier.padding(top = 16.dp), thickness = 0.5.dp)
+            Divider(color = MaterialTheme.colorScheme.onBackground, modifier = Modifier.padding(top = 16.dp), thickness = 0.5.dp)
         }
     }
 }
@@ -243,7 +240,7 @@ fun BottomBar() {
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp),
-        backgroundColor = pink100
+        backgroundColor = MaterialTheme.colorScheme.primary
     ) {
         navList.forEach {
             BottomNavigationItem(
@@ -260,7 +257,7 @@ fun BottomBar() {
                     Text(
                         text = it.name,
                         style = caption,
-                        color = gray
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             )
